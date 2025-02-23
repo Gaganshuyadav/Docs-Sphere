@@ -24,7 +24,7 @@ export default function CreateDocumentButton(){
         }
         catch(err:any ){
             setLoading(false);
-            console.log(err);
+            // console.log(err);
         }
     
     }
