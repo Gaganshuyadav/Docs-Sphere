@@ -4,13 +4,227 @@ import { setActiveDialogForMenuUseBoolean } from "../../../../redux/Slices/compo
 import { MenuItemsButton } from "./ButtonForAll/MenuItemButtons";
 import { useContext } from "react";
 import { EditorContext } from "../../../../context/editor-context";
-import { convertToRaw, EditorState, SelectionState } from "draft-js";
+import { ContentState, convertToRaw, EditorState, Modifier, SelectionState } from "draft-js";
+import { blob } from "stream/consumers";
 
 const Edit = ( { idx}:{idx:number}) =>{
 
     const dispatch = useDispatch(); 
     const { editorState, setEditorState, editorRef} = useContext( EditorContext);
 
+
+    //undo -----------------
+    const undoHandler = ()=>{
+      setEditorState( EditorState.undo( editorState));
+      dispatch( setActiveDialogForMenuUseBoolean(false));
+
+    } 
+
+    //redo -----------------
+    const redoHandler = ()=>{
+        setEditorState( EditorState.redo( editorState));
+        dispatch( setActiveDialogForMenuUseBoolean(false));
+    }
+
+    //handle delete text -----------------
+    const handleDelete = ()=>{
+
+      const contentState = editorState.getCurrentContent();
+      const selection = editorState.getSelection()
+       
+        const afterDeleteContent = Modifier.removeRange( contentState, selection, "backward");
+
+        setEditorState( EditorState.push( editorState, afterDeleteContent, "remove-range"));
+        dispatch( setActiveDialogForMenuUseBoolean(false));
+
+    }
+
+    //cut text ----------------- 
+    const handleCutText = async()=>{
+
+      const contentState = editorState.getCurrentContent();
+      const selectionState = editorState.getSelection();
+
+      //get text from selection
+
+      const blocks = convertToRaw(contentState).blocks;
+
+      let selectedText = "";
+      let isWithinSelection = false;
+      blocks.forEach((block)=>{
+          
+        if( block.key===selectionState.getAnchorKey() && block.key===selectionState.getEndKey()){
+          selectedText += block.text.slice( selectionState.getAnchorOffset() , selectionState.getFocusOffset());               
+        }
+        else if( block.key===selectionState.getAnchorKey()){
+          isWithinSelection = true;
+          selectedText += block.text.slice( selectionState.getAnchorOffset());
+          selectedText += "\n";
+        }
+        else if( block.key===selectionState.getEndKey()){
+          isWithinSelection = false;
+          selectedText += block.text.slice( 0 , selectionState.getEndOffset());
+          selectedText += "\n";
+        }
+        else if(isWithinSelection){
+          selectedText += block.text;
+          selectedText += "\n";
+        }
+        else{
+          //do nothing
+        }
+  })
+
+
+      //copy text in clipboard 
+      try{
+
+        // clipboard writeText is allowed in laptop but some android phones not allow it and state is denied,  for that we need to make create element and then copy it
+        navigator.permissions.query( { name: "clipboard-write"})
+        .then(async ( permission)=>{
+
+            if( permission.state==="denied"){
+
+                const textArea = window.document.createElement("textarea");
+                textArea.value = selectedText;
+                window.document.body.appendChild(textArea);
+                textArea.select();
+                window.document.execCommand('copy');
+                window.document.body.removeChild(textArea);
+            }
+            else{
+
+              await window.navigator.clipboard.writeText( selectedText);          
+          }
+
+        })
+        .catch((err)=>{
+          console.log("clipboard permission check error");
+        });
+
+      }
+      catch(err){
+        console.log("copy selected text error");
+      }
+
+      
+      
+      // now remove selected text
+      const aferDeletedContent = Modifier.removeRange( contentState, selectionState, "backward");
+      setEditorState( EditorState.push( editorState, aferDeletedContent, "remove-range"));
+
+
+      dispatch( setActiveDialogForMenuUseBoolean(false));
+
+    }
+
+    //copy text -----------------
+    const handleCopyText = async ()=>{
+
+        const contentState = editorState.getCurrentContent();
+        const selectionState = editorState.getSelection();
+  
+        //get text from selection
+  
+        const blocks = convertToRaw(contentState).blocks;
+
+        let selectedText = "";
+        let isWithinSelection = false;
+        blocks.forEach((block)=>{
+          
+            if( block.key===selectionState.getAnchorKey() && block.key===selectionState.getEndKey()){
+              selectedText += block.text.slice( selectionState.getAnchorOffset() , selectionState.getFocusOffset());               
+            }
+            else if( block.key===selectionState.getAnchorKey()){
+              isWithinSelection = true;
+              selectedText += block.text.slice( selectionState.getAnchorOffset());
+              selectedText += "\n";
+            }
+            else if( block.key===selectionState.getEndKey()){
+              isWithinSelection = false;
+              selectedText += block.text.slice( 0 , selectionState.getEndOffset());
+              selectedText += "\n";
+            }
+            else if(isWithinSelection){
+              selectedText += block.text;
+              selectedText += "\n";
+            }
+            else{
+              //do nothing
+            }
+      })
+
+
+
+      //copy text in clipboard 
+      try{
+
+        // clipboard writeText is allowed in laptop but some android phones not allow it and state is denied,  for that we need to make create element and then copy it
+        navigator.permissions.query( { name: "clipboard-write"})
+        .then(async ( permission)=>{
+
+            if( permission.state==="denied"){
+
+                const textArea = window.document.createElement("textarea");
+                textArea.value = selectedText;
+                window.document.body.appendChild(textArea);
+                textArea.select();
+                window.document.execCommand('copy');
+                window.document.body.removeChild(textArea);
+            }
+            else{
+
+              await window.navigator.clipboard.writeText( selectedText);          
+          }
+
+        })
+        .catch((err)=>{
+          console.log("clipboard permission check error");
+        });
+
+      }
+      catch(err){
+        console.log("copy selected text error");
+      }
+
+
+
+      dispatch( setActiveDialogForMenuUseBoolean(false))
+
+
+    }
+
+
+    //paste text -----------------
+    const handlePasteText = async ()=>{
+      
+        //take content from clipboard
+        const clipboardText = await window.navigator.clipboard.read()
+         
+         let getText;
+         for( let item of clipboardText){
+          
+            const blob = await item.getType("text/plain");
+            getText = await blob.slice().text() as string|null;
+         }
+
+         if(!getText){ 
+          return;
+        }
+
+        const contentState = editorState.getCurrentContent();
+        const selection = editorState.getSelection();
+       
+        const afterPastingContent = Modifier.replaceText( contentState, selection, getText );
+
+        setEditorState( EditorState.push( editorState, afterPastingContent, "remove-range"));
+        dispatch( setActiveDialogForMenuUseBoolean(false));
+
+
+    }
+    
+
+    //select all text -----------------
     const handleSelectAllText = ()=>{
 
       const contentState = editorState.getCurrentContent();                       
@@ -66,17 +280,26 @@ const Edit = ( { idx}:{idx:number}) =>{
         <MenuDialog 
           idx={idx}
           component={(
-            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
-              <MenuItemsButton item={"Undo"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-              <MenuItemsButton item={"Redo"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-              <MenuItemsButton item={"Cut"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-              <MenuItemsButton item={"Copy"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-              <MenuItemsButton item={"Paste"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-              <MenuItemsButton item={"Delete"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
+            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap relative">
+              <MenuItemsButton item={"Undo"} onClickHandler={undoHandler} />
+              <MenuItemsButton item={"Redo"} onClickHandler={redoHandler} />
+              <MenuItemsButton item={"Cut"} onClickHandler={ handleCutText} />
+              <MenuItemsButton item={"Copy"} onClickHandler={handleCopyText}/>
+              <MenuItemsButton item={"Paste"} onClickHandler={handlePasteText} />
+              <MenuItemsButton item={"Delete"} onClickHandler={handleDelete} />
               <MenuItemsButton item={"Select All"} onClickHandler={handleSelectAllText} /> 
             </div>
           )}
         />
+
+
+
+
+
+
+
+
+
 
 
 

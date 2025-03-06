@@ -23,5 +23,6 @@ class RefreshToken extends Model{
 
 }
 
+
 export { RefreshToken} ;
 

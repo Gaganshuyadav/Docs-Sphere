@@ -21,13 +21,11 @@ export default function Format({ idx }: { idx: number }) {
             <MenuDialog
                 idx={idx}
                 component={(
-                    <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
+                    <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap relative">
                         <MenuItemsButton item={"Bold"} onClickHandler={ ()=>{ handleTextFormating("BOLD") } } />
                         <MenuItemsButton item={"Italic"} onClickHandler={()=>{ handleTextFormating("ITALIC")}} />
-                        <MenuItemsButton item={"Text Color "} onClickHandler={()=>{ handleTextFormating("BLUE")} } />
-                        <MenuItemsButton item={"Background Color "} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
                         <MenuItemsButton item={"Line Height"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-                        <MenuItemsButton item={"Underline"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
+                        <MenuItemsButton item={"Underline"} onClickHandler={()=>{ handleTextFormating("UNDERLINE")} } />
                         <MenuItemsButton item={"H1"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
                         <MenuItemsButton item={"H2"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
                         <MenuItemsButton item={"Bullet List"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />

@@ -8,6 +8,7 @@ import { SocketContext } from "../../../context/socket-context";
 import { useSelector } from "react-redux";
 import { DocumentStateType, UserStateType } from "../../../vite-env";
 import { useParams } from "react-router";
+import colorStyleMap from "../../values/colorStyleMap";
 
 const DocumentEditor = () =>{
 
@@ -54,16 +55,18 @@ const DocumentEditor = () =>{
 
     return(
         <>
-        <div className="border-2 border-black mt-6">
-           
-            <Editor 
-                editorState={ editorState} 
-                onChange={( editorState)=>{ setEditorState(editorState); handleEditorChange(editorState)}} 
-                ref={editorRef} 
-                placeholder="Start Your Journey... "
-                // customStyleMap={colorStyleMap}
-                // blockRendererFn={ mediaBlockRenderer}
-            />
+        <div className="border-2 w-full">
+            <div className="mt-6 sm:w-[90%] md:w-[700px] mx-auto shadow-xl shadow-blue-200">
+               
+                <Editor 
+                    editorState={ editorState} 
+                    onChange={( editorState)=>{ setEditorState(editorState); handleEditorChange(editorState)}} 
+                    ref={editorRef} 
+                    placeholder="start writing... "
+                    customStyleMap={ colorStyleMap}
+                    // blockRendererFn={ mediaBlockRenderer}
+                />
+            </div>
         </div>
         </>
     )
@@ -182,7 +185,7 @@ const DocumentEditor = ()=>{
             label: "VIOLET"
         },
     ];
-      
+      give 40 colors in this format, and both object should have equal length and sequence of color
     //----------------------------------------------------
     //text style
     const handleTextStyle = ( style:string)=>{
@@ -332,10 +335,58 @@ export { DocumentEditor};
 
 
 
+/*
 
 
+// DocumentEditor.js
+import React, { useState } from 'react';
+import { Editor, EditorState } from 'draft-js';
+import 'draft-js/dist/Draft.css';
 
+const DocumentEditor = () => {
+  const [pages, setPages] = useState([{ editorState: EditorState.createEmpty() }]);
+  const [currentPage, setCurrentPage] = useState(0);
 
+  const handleEditorChange = (state) => {
+    const updatedPages = [...pages];
+    updatedPages[currentPage].editorState = state;
+    setPages(updatedPages);
+  };
+
+  const addPage = () => {
+    setPages([...pages, { editorState: EditorState.createEmpty() }]);
+    setCurrentPage(pages.length); // Switch to the new page
+  };
+
+  const handlePageChange = (index) => {
+    setCurrentPage(index);
+  };
+
+  return (
+    <div>
+      <button onClick={addPage}>Add Page</button>
+      <div style={{ marginTop: '20px' }}>
+        {pages.map((page, index) => (
+          <div key={index} style={{ border: '1px solid #ccc', margin: '10px 0', padding: '10px' }}>
+            <h3 onClick={() => handlePageChange(index)} style={{ cursor: 'pointer' }}>
+              Page {index + 1}
+            </h3>
+            {currentPage === index && (
+              <Editor
+                editorState={page.editorState}
+                onEditorStateChange={handleEditorChange}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default DocumentEditor;
+
+*/
 
 
 

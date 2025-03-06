@@ -39,11 +39,50 @@ const ShareDocumentModel = () =>{
       if(params.id===null || params.id===undefined){
         return;
       }
+
+
+      try{
+
+          // clipboard writeText is allowed in laptop but some android phones not allow it and state is denied,  for that we need to make create element and then copy it
+          navigator.permissions.query( { name: "clipboard-write"})
+          .then(( permission)=>{
+
+              if( permission.state==="denied"){
+
+                  const text = window.location.href;
+                  const textArea = window.document.createElement("textarea");
+                  textArea.value = text;
+                  window.document.body.appendChild(textArea);
+                  textArea.select();
+                  window.document.execCommand('copy');
+                  window.document.body.removeChild(textArea);
+                  success("Link Copied !!");
+              }
+              else{
+
+                window.navigator.clipboard.writeText( window.location.href)
+                .then(()=>{
+                  success("Link Copied !!");
+                }) 
+                .catch((err)=>{
+                  error("Not Copied !!");
+                })
+            
+            }
+
+
+          })
+          .catch((err)=>{
+            error("Not Copied !!");
+          })
+
+      }
+      catch(err){
+        error("Not Copied !!");
+      }
         
-        window.navigator.clipboard.writeText( window.location.href)
-        .then(()=>{
-          success("Link Copied !!");
-        })
+        
+    
     };
 
     //update is public or private
@@ -72,11 +111,11 @@ const ShareDocumentModel = () =>{
       <>
        <div>
          <button disabled={isLoading} onClick={()=>{ updateIsPublic(true)}}>
-           <Box className="text-blue-600 font-semibold hover:text-blue-700" sx={{"&:hover":{textShadow:"0px 0px 1px blue"}}}>Change to anyone with the link</Box>
+           <Box className="text-blue-600 border-red-500 text-left text-sm md:text-base font-semibold hover:text-blue-700" sx={{"&:hover":{textShadow:{ xs:"0px 0px 0px blue", md:"0px 0px 1px blue"} }}}>Change to anyone with the link</Box>
          </button>
-         <div className=" flex mt-2">
-           <b className="text-gray-700 font-bold">Restricted</b>
-           <p className="text-gray-600 font-semibold ml-1">Only added people can connect with the link</p>
+         <div className=" flex mt-2 flex-col md:flex-row">
+           <b className="text-gray-700 font-bold mr-4 md:mr-0 " >Restricted</b>
+           <p className="text-gray-600 font-semibold ml-1 mr-4 md:mr-0 text-sm md:text-base mt-1 md:mt-0">Only added people can connect with the link</p>
          </div>
        </div>
       </>
@@ -87,11 +126,11 @@ const ShareDocumentModel = () =>{
       <>
        <div>
          <button disabled={isLoading} onClick={()=>{ updateIsPublic(false)}}>
-           <Box className="text-blue-600 font-semibold hover:text-blue-700" sx={{"&:hover":{textShadow:"0px 0px 1px blue"}}}>Change to only shared Users with the Link</Box>
+           <Box className="text-blue-600 border-red-500 text-left text-sm md:text-base font-semibold hover:text-blue-700" sx={{"&:hover":{textShadow:{ xs:"0px 0px 0px blue", md:"0px 0px 1px blue"} }}}>Change to only shared Users can access with the Link</Box>
          </button>
-         <div className=" flex mt-2">
-           <b className="text-gray-700 font-bold">Public</b>
-           <p className="text-gray-600 font-semibold ml-1">Anyone can connect with the link</p>
+         <div className=" flex mt-2 flex-col md:flex-row">
+           <b className="text-gray-700 font-bold mr-4 md:mr-0">Public</b>
+           <p className="text-gray-600 font-semibold ml-1 mr-4 md:mr-0 text-sm md:text-base mt-1 md:mt-0">Anyone can connect with the link</p>
          </div>
        </div>
       </>
@@ -105,7 +144,7 @@ const ShareDocumentModel = () =>{
 
       setIsLoading(true);
       try{
-         const { data} = await axios.post<{documentUser:DocumentUser, user:{email:string}}>(`${server}/document/${document?.id}/share`, { email: shareEmail, permission: PermissionEnum.VIEW }, { headers:{ "Content-Type":"application/json", "Authorization":`Bearer ${accessToken}` } });
+         const { data} = await axios.post<{documentUser:DocumentUser, user:{email:string}}>(`${server}/document/${document?.id}/share`, { email: shareEmail, permission: PermissionEnum.EDIT }, { headers:{ "Content-Type":"application/json", "Authorization":`Bearer ${accessToken}` } });
          dispatch( setDocument({ ...document, sharedDocuments: [ ...document?.sharedDocuments,  { ... data?.documentUser, User:{ email: data.user.email} } ] }));
          success(`Document is Shared with ${data.user.email}, Successfully !!`)
       }
@@ -135,7 +174,7 @@ const ShareDocumentModel = () =>{
     return(
         <ShareDialog 
             Button={<div>
-                      <button className="flex py-2 px-4 rounded-lg bg-blue-700 hover:bg-blue-800">
+                      <button className="flex py-[5px] px-5 md:py-2 md:px-4 mt-2 md:m-0 rounded-lg bg-blue-700 hover:bg-blue-800 ">
                         <div className="text-white">
                           <LockIcon sx={{fontSize:"20px", position:"relative", bottom:"2px"}}/>
                         </div> 
@@ -151,7 +190,7 @@ const ShareDocumentModel = () =>{
                     <>
                     <div 
                         onKeyDown={handleKeyPressDownEvent}
-                        className="border-none p-4 w-full bg-white flex flex-col rounded-md text-black opacity-100 sm:w-[500px] md:w-[600px]"
+                        className="border-none p-4 w-full bg-white flex flex-col rounded-md text-black opacity-100 w-[355px] md:w-[600px]"
                     >
                         <div>
                             
@@ -189,7 +228,7 @@ const ShareDocumentModel = () =>{
                     </div>
 
 
-                    <div className="p-4 w-full bg-white flex flex-col rounded-md mt-6 text-red-800">
+                    <div className="p-4 w-[355px] md:w-full bg-white flex flex-col rounded-md mt-6 text-red-800">
                             
                             <div className=" flex">
                                 <div className=" w-[45px] h-[45px] flex justify-center items-center rounded-full bg-gray-300">
@@ -203,8 +242,8 @@ const ShareDocumentModel = () =>{
                               
                               { document?.isPublic ? changeToRestrictedBtn : changeToPublicBtn}
 
-                              <div onClick={handleCopyLink} className=" my-auto font-semibold text-blue-700 mr-2 hover:text-blue-400">
-                                <button>Copy Link</button>
+                              <div  className=" my-auto font-semibold text-blue-700 mr-2 hover:text-blue-400 whitespace-nowrap z-20">
+                                <button onClick={handleCopyLink}>Copy Link</button>
                               </div>
 
                             </div>

@@ -12,7 +12,7 @@ const File = ({ idx}:{idx:number}) =>{
         <MenuDialog 
           idx={idx}
           component={(
-            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
+            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap relative">
 
               <MenuItemsButton item={"Save"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
               <MenuItemsButton item={"Exit"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />

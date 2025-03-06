@@ -20,6 +20,8 @@ UserRole.belongsTo(Role, { foreignKey: "roleId" });
 //DocumentUser
 DocumentUser.belongsTo(User, { foreignKey: "userId" });
 DocumentUser.belongsTo(Document, { foreignKey: "documentId" });
+//user with refresh token
+RefreshToken.belongsTo(User, { foreignKey: "userId" });
 const db = {
     User,
     UserRole,

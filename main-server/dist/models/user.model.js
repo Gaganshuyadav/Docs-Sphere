@@ -8,11 +8,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Table, Column, DataType, Model, HasMany, BelongsToMany, Scopes } from "sequelize-typescript";
-import { RefreshToken } from "./refresh-token.model.js";
 import { UserRole } from "./user-role.model.js";
 import { DocumentUser } from "./document-user.model.js";
 import { Role } from "./role.model.js";
 import { Document } from "./document.model.js";
+import { RefreshToken } from "./refresh-token.model.js";
 let User = class User extends Model {
 };
 __decorate([
@@ -41,9 +41,7 @@ __decorate([
 __decorate([
     HasMany(() => RefreshToken, {
         onDelete: 'CASCADE'
-    })
-    // refreshTokens!: Array<RefreshToken>
-    ,
+    }),
     __metadata("design:type", Array)
 ], User.prototype, "refreshTokens", void 0);
 __decorate([

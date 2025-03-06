@@ -14,7 +14,7 @@ const Tools = ( { idx}:{idx:number}) =>{
         <MenuDialog
           idx={idx} 
           component={(
-            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
+            <div className="relative bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
               <MenuItemsButton item={"Spell Check"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
               <MenuItemsButton item={"Grammer Check"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
               <MenuItemsButton item={"Word Count"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />

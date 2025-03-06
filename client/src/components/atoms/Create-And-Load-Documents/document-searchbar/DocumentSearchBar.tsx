@@ -100,7 +100,7 @@ const SerachQueryOption = ( { document}:{ document:DocumentInterface}) => {
     
     return (
         <Link to={`/document/${document.id}`}>
-        <div className="rounded border-[2px] flex items-start py-1 my-1">
+        <div className="rounded border-[2px] flex items-start py-1 my-1 hover:bg-gray-200">
             <InsertDriveFileIcon sx={{ color: "rgba(10, 11, 39, 0.48)", fontSize: "27px", margin: "7px 14px" }} />
             <div className=" flex flex-col ml-2">
                 <div className="text-gray-600 font-bold tracking-wider text-lg">{document.title}</div>

@@ -3,3 +3,11 @@
     background-color: rgb(191, 188, 188);
     color: rgb(0, 0, 0);
 }
+
+.DraftEditor-root{
+    border: 1px solid rgb(210, 207, 207);
+    padding: 20px;
+    min-height: 700px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}

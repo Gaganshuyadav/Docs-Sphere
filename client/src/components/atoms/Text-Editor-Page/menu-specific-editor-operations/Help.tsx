@@ -12,7 +12,7 @@ const Help = ({ idx}:{idx:number}) =>{
         <MenuDialog
           idx={idx} 
           component={( 
-            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
+            <div className="bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap relative" >
               <MenuItemsButton item={"User Guide"} onClickHandler={ ()=>{ dispatch(setActiveDialogForMenuUseBoolean(false))}} />
               <MenuItemsButton item={"Keyboard Shortcuts"} onClickHandler={ ()=>{ dispatch(setActiveDialogForMenuUseBoolean(false))}} />
               <MenuItemsButton item={"About"} onClickHandler={ ()=>{ dispatch(setActiveDialogForMenuUseBoolean(false))}} />

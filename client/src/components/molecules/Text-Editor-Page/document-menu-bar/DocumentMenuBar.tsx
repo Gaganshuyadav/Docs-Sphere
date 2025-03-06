@@ -25,6 +25,7 @@ import { EditorState, SelectionState } from "draft-js";
 import randomColor from "randomcolor";
 import { SocketContext } from "../../../../context/socket-context";
 import { SocketEvent } from "../../../../types/enums/SocketEvents";
+import { Menu} from "@mui/icons-material";
 
 export default function DocumentMenuBar(){
 
@@ -39,6 +40,11 @@ export default function DocumentMenuBar(){
     const [ updatedTitle, setUpdatedTitle] = useState<string>("");
     const { error} = useContext(ToastContext);
     const socket = useContext(SocketContext).socket;
+
+    //--------responsiveness----------------------
+    const [ openCloseButtonForMenuBarResponsiveness, setOpenCloseButtonForMenuBarResponsiveness] = useState(false);
+    const MenuBarForEditorMiniRef = useRef<HTMLDivElement>(null);
+    //--------------------------------------------
     
 
     if(params.id===undefined){
@@ -99,13 +105,15 @@ export default function DocumentMenuBar(){
     },[ socket]);
 
 
-    //menu dialog
+    //menu dialog for medium screen
     useEffect(()=>{
 
         const MenuButtonsAllClose = (e:MouseEvent)=>{
 
             if(!MenuBarForEditorRef.current?.contains( e.target as HTMLDivElement)){
                 dispatch( setActiveDialogForMenuUseBoolean(false));
+                setOpenCloseButtonForMenuBarResponsiveness(false);
+
                 
             }
 
@@ -121,13 +129,13 @@ export default function DocumentMenuBar(){
 
 
     return (
-    <div className="border-2 border-blue-200 flex flex-row justify-between items-center h-24 ">
+    <div className=" flex flex-row justify-between items-center h-24 ">
 
-        <div className="border-2 flex">
+        <div className="flex">
             <div className="ml-4 flex items-center justify-center">
                 <Logo marginLeft={0} width={40}/>
             </div>
-            <div className="border-2 border-green-200">
+            <div >
                 <div className=" w-full">
                     <input 
                         type="text" 
@@ -141,24 +149,51 @@ export default function DocumentMenuBar(){
                     />
                 </div>
                 
-                {/* menu */}
-                <div ref={MenuBarForEditorRef} className="flex flex-row">
-                    <MenuButton key={0} keyValue={0} name={"File"} component={ <File idx={0}/>} /> 
-                    <MenuButton key={1} keyValue={1} name={"Edit"} component={ <Edit idx={1}/>} /> 
-                    <MenuButton key={2} keyValue={2} name={"View"} component={ <View idx={2}/>} /> 
-                    <MenuButton key={3} keyValue={3} name={"Insert"} component={ <Insert idx={3}/>} />
-                    <MenuButton key={4} keyValue={4} name={"Format"} component={ <Format idx={4}/>} /> 
-                    <MenuButton key={5} keyValue={5} name={"Tools"} component={ <Tools idx={5}/>} /> 
-                    <MenuButton key={6} keyValue={6} name={"Add-ons"} component={ <AddOns idx={6}/>} />
-                    <MenuButton key={7} keyValue={7} name={"Help"} component={ <Help idx={7}/>} />
+                <div ref={MenuBarForEditorRef} >
+                    {/* menu */}
+                    
+                    <div className="md:flex md:flex-row hidden relative">
+                        <MenuButton key={0} keyValue={0} name={"File"} component={ <File idx={0}/>} /> 
+                        <MenuButton key={1} keyValue={1} name={"Edit"} component={ <Edit idx={1}/>} /> 
+                        <MenuButton key={2} keyValue={2} name={"View"} component={ <View idx={2}/>} /> 
+                        <MenuButton key={3} keyValue={3} name={"Insert"} component={ <Insert idx={3}/>} />
+                        <MenuButton key={4} keyValue={4} name={"Format"} component={ <Format idx={4}/>} /> 
+                        <MenuButton key={5} keyValue={5} name={"Tools"} component={ <Tools idx={5}/>} /> 
+                        <MenuButton key={6} keyValue={6} name={"Add-ons"} component={ <AddOns idx={6}/>} />
+                        <MenuButton key={7} keyValue={7} name={"Help"} component={ <Help idx={7}/>} />
+                    </div>
+    
+                    {/* dialaog menu for small screen */}
+                    {
+                        openCloseButtonForMenuBarResponsiveness && (
+                    
+                        <div className="flex flex-row md:hidden relative top-7 z-10">
+                            <div className="absolute flex flex-col bg-white w-28 shadow-xl">
+                                <MenuButton key={0} keyValue={0} name={"File"} component={ <File idx={0}/>} /> 
+                                <MenuButton key={1} keyValue={1} name={"Edit"} component={ <Edit idx={1}/>} /> 
+                                <MenuButton key={2} keyValue={2} name={"View"} component={ <View idx={2}/>} /> 
+                                <MenuButton key={3} keyValue={3} name={"Insert"} component={ <Insert idx={3}/>} />
+                                <MenuButton key={4} keyValue={4} name={"Format"} component={ <Format idx={4}/>} /> 
+                                <MenuButton key={5} keyValue={5} name={"Tools"} component={ <Tools idx={5}/>} /> 
+                                <MenuButton key={6} keyValue={6} name={"Add-ons"} component={ <AddOns idx={6}/>} />
+                                <MenuButton key={7} keyValue={7} name={"Help"} component={ <Help idx={7}/>} />
+                            </div>
+                        </div>)
+                    }
+    
+                        <Menu className="text-gray-500 relative" sx={{display:{xs:"block",md:"none"}}} onClick={()=>{ setOpenCloseButtonForMenuBarResponsiveness(!openCloseButtonForMenuBarResponsiveness)}} />
                 </div>
+ 
             </div>
         </div>
 
-        <div className="flex justify-center items-center">
+        <div className="flex-none md:flex justify-center items-center md:flex-row flex-col relative left-4 md:left-0">
             {document?.userId===user?.id && (<ShareDocumentModel/>) }
-            <CurrentUsers/>
-            <UserDropdown/>
+            <div className=" flex ">
+                <CurrentUsers/>
+                <UserDropdown/>
+            </div>
+            
         </div>
 
     </div>)
@@ -177,9 +212,10 @@ const MenuButton = ({ keyValue,  name, component}:{ keyValue:number, name:string
     return(
         <div className="relative">
             <button 
-                className={` ${buttonBGColor} hover:ring-1 hover:ring-gray-200 text-sm font-semibold text-gray-700 py-0.5 px-2 mx-1 rounded hover:bg-gray-100 hover:text-gray-900 relative`}
+                className={` ${buttonBGColor} hover:ring-1 hover:ring-gray-200 text-sm font-semibold text-gray-700 py-0.5 px-2 mx-1 rounded hover:bg-gray-100 hover:text-gray-900 relative  whitespace-nowrap`}
                 onClick={()=>{ 
-                    dispatch(setActiveDialogForMenuUseBoolean(true));             
+                    dispatch(setActiveDialogForMenuUseBoolean(true));     
+                    dispatch( setActiveDialogForMenuUseIdx(keyValue))        
     
                     //when i click on menu then selection color is gone , so i need to manage it
                     const selectionState = editorState.getSelection();
@@ -204,22 +240,24 @@ const CurrentUsers = memo(() => {
     
 
     return(
-        <div className="max-w-80 h-15 hover:overflow-scroll overflow-y-hidden ">
+        <div className="max-w-80 h-15 hover:overflow-scroll overflow-y-hidden block md:block">
             
-            <div className=" m-2 flex items-center justify-center"> 
+            <div className="m-0 md:m-2 flex items-none md:items-center justify-none md:justify-center w-16 overflow-y-scroll md:w-auto md:overflow-y-visible "> 
                 {
-                    currentUsers?.map((cUser)=>{
+                    currentUsers?.map((cUser, i)=>{
                         return(
                             <>
 
-                            { user?.email!==cUser && (<div style={{backgroundColor: rColor}} className={`w-10 h-10 rounded-full ${randomColor} relative m-1`}
-                            >
-                                <h1 className=" text-2xl text-center h-full text-white mt-[2px] rounded-fill">
+                            { user?.email!==cUser && (<div key={i} style={{backgroundColor: rColor}} className={`h-8 h-8 md:w-10 md:h-10 rounded-full ${randomColor} relative m-1`}>
+                                
+                                <h1 className="text-xl md:text-2xl text-center h-full text-white rounded-fill h-8 w-8 md:w-10 md:h-10">
                                     { cUser?.charAt(0).toUpperCase()}
                                 </h1>
                             </div> )
 
                             }
+                         
+                           
 
                             </>
                         )

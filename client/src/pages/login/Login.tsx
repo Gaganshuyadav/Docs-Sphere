@@ -23,9 +23,9 @@ export default function Login(){
     const navigate = useNavigate();
     const [ value, setValue] = useLocalStorage("docs-sphere-refresh-token", "");
 
-    const [ email, setEmail] = useState<string>(""); 
+    const [ email, setEmail] = useState<string>("test419@gmail.com"); 
     const [ emailErrors, setEmailErrors] = useState<Array<string>>([]);
-    const [ password, setPassword] = useState<string>(""); 
+    const [ password, setPassword] = useState<string>("11111111"); 
     const [ passwordErrors, setPasswordErrors] = useState<Array<string>>([]);
     const [ isLoading, setIsLoading] = useState<boolean>(false);
 

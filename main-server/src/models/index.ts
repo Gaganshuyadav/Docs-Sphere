@@ -18,6 +18,7 @@ sequelize.addModels([
 ])
 
 
+
 //UserRole
 UserRole.belongsTo(User, { foreignKey: "userId"});
 UserRole.belongsTo(Role, { foreignKey:"roleId"});
@@ -25,6 +26,9 @@ UserRole.belongsTo(Role, { foreignKey:"roleId"});
 //DocumentUser
 DocumentUser.belongsTo(User, { foreignKey: "userId"});
 DocumentUser.belongsTo(Document, { foreignKey:"documentId"});
+
+//user with refresh token
+RefreshToken.belongsTo( User, { foreignKey: "userId"});
 
 
 const db = {
