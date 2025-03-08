@@ -34,8 +34,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/socketServer.js",
-    "dev": "concurrently \"nodemon dist/socketServer.js\" \"tsc -w\" ",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"nodemon dist/server.js\" \"tsc -w\" ",
     "erd": "sequelize-erd --source ./path/to/your/sequelize/instance --destination ./erd.svg"
   },
   "author": "",
