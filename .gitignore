@@ -1,4 +1,4 @@
-main-server/.env.development
+main-server/.env
 main-server/node_modules
 client/.env
 client/node_modules
