@@ -83,6 +83,8 @@ export default function Login(){
         }
         catch(err:any ){
 
+            console.log(err)
+
             
             setIsLoading(false);
 

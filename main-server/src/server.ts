@@ -17,6 +17,7 @@ app.use(express.json());
 //db connection--------------------------------------------
 
 import db from "./models/index.js";
+import { env } from "./config/env.config.js";
 
 db.sequelize.sync({ alter: true})
 .then((data)=>{
@@ -38,6 +39,7 @@ db.sequelize.authenticate()
 
 
 //server routes--------------------------------------------
+
 
 app.get("/", ( req:Request, res:Response)=>{
     res.json({
