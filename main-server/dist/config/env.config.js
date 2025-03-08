@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config({ path: '.env' });
+dotenv.config();
 if (process.env.NODE_ENV === undefined ||
     process.env.HOST === undefined ||
     process.env.PORT === undefined ||

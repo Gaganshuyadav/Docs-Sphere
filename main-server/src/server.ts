@@ -21,6 +21,7 @@ import { env } from "./config/env.config.js";
 
 db.sequelize.sync({ alter: true})
 .then((data)=>{
+    console.log("env ",env.PORT);
     console.log("All Tables are created successfully");
 })
 .catch((err)=>{
