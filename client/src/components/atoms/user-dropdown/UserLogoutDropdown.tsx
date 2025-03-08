@@ -72,7 +72,7 @@ const UserDropdown = ()=>{
     
     
     return(
-        <div ref={dropDownContentRef} className="mr-2 md:mr-4 mt-1 rounded-full relative cursor-pointer mx-auto">
+        <div ref={dropDownContentRef} className="mr-2 md:mr-4 mt-1 rounded-full relative cursor-pointer">
             <div style={{backgroundColor:color}} className={`w-10 h-10 md:w-12 md:h-12 rounded-full relative mx-0 md:mx-auto ml-2 mr-0 `}
             >
                 <h1 className=" text-2xl md:text-3xl text-center h-full text-white mt-[2px] pt-1 rounded-fill ">

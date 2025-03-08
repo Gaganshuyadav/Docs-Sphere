@@ -39,6 +39,13 @@ db.sequelize.authenticate()
 
 //server routes--------------------------------------------
 
+app.get("/", ( req:Request, res:Response)=>{
+    res.json({
+        success:true,
+        message:"docs sphere server is now connected"
+    })
+})
+
 app.use(router);
 
 

@@ -42,6 +42,8 @@ export default memo(function DocumentCard( { document, setDocuments}:DocumentCar
             <div className="border-1 border-gray- pt-1">
                 { Skeleton}
             </div>
+            
+            </Link>
 
             <div className="border-t-2 box-border px-2 py-3">
                 <div>
@@ -49,6 +51,8 @@ export default memo(function DocumentCard( { document, setDocuments}:DocumentCar
                 </div>
 
                 <div className="flex justify-between">
+
+                    <Link to={`/document/${document.id}`}>
                     <div className="flex justify-start items-end">
                         <div>
                             <Logo width={25} marginLeft={0}/>
@@ -56,7 +60,11 @@ export default memo(function DocumentCard( { document, setDocuments}:DocumentCar
                         <div className="font-semibold text-gray-400 text-xs">
                             {new Date( document?.updatedAt).toLocaleDateString("en-US",{ month: "short", day:"numeric", year:"numeric"})}
                         </div>
+                        
+                    
+
                     </div>
+                    </Link>
 
                     {
                         document?.userId=== user?.id && (
@@ -71,7 +79,6 @@ export default memo(function DocumentCard( { document, setDocuments}:DocumentCar
 
             </div>
            
-           </Link>
           </div>
         </div>
         

@@ -1,9 +1,10 @@
+import { RawDraftContentBlock, RawDraftContentState } from "draft-js";
 import DocumentUser from "./DocumentUser";
 
 interface DocumentInterface{
     id:number;
     title: string;
-    content: string | null ;
+    content: RawDraftContentState | null ;
     createdAt: Date;
     updatedAt: Date ;
     userId: number ;

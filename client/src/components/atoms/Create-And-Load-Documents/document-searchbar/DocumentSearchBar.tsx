@@ -60,7 +60,7 @@ export default function DocumentSearchBar() {
 
 
     return (
-        <div className={`h-12 w-8/12 lg:w-6/12 border-blue-500 relative`}>
+        <div className={` left-3 md:left-0 w-8/12 sm:w-9/12 md:h-12 md:w-8/12 lg:w-6/12 border-blue-500 relative`}>
 
             {/* search */}
             <div className={`h-12 w-full flex items-center shadow-md bg-gray-100 relative rounded ${isFocused ? "ring-2 ring-blue-500" : "border-2"}`}>

@@ -9,11 +9,14 @@ import {RichUtils } from "draft-js";
 export default function Format({ idx }: { idx: number }) {
 
     const dispatch = useDispatch();
-    const { editorState, setEditorState} = useContext(EditorContext);
+    const { editorState, setEditorState, handleEditorChange} = useContext(EditorContext);
+    
     
     const handleTextFormating = ( command:string) =>{
         const newState = RichUtils.toggleInlineStyle( editorState, command);
         setEditorState(newState);
+        //styles realtime and database update
+        handleEditorChange(newState);
     };
 
     return (

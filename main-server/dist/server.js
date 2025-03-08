@@ -24,5 +24,11 @@ db.sequelize.authenticate()
     console.log("error in database connection");
 });
 //server routes--------------------------------------------
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "docs sphere server is now connected"
+    });
+});
 app.use(router);
 export default app;

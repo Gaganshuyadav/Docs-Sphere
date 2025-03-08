@@ -5,13 +5,13 @@ import { DocumentStateType, UserStateType } from "../../../../vite-env";
 import useLocalStorage from "../../../../hooks/useLocalStorage";
 import axios from "axios";
 import { server } from "../../../../utils/config";
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { AppDispatch } from "../../../../redux/store";
 import { savingDocument, setDocument } from "../../../../redux/Slices/documentSlice";
 import { ToastContext } from "../../../../context/toast-context";
 
 
-export default function SharedUsers({ document }: { document?: DocumentInterface }) {
+export default memo( function SharedUsers({ document }: { document?: DocumentInterface }) {
 
     const [randomColor, colors] = useRandomColor();
     const dispatch = useDispatch<AppDispatch>();
@@ -104,4 +104,4 @@ export default function SharedUsers({ document }: { document?: DocumentInterface
             </div>
         </>
     )
-}
+})

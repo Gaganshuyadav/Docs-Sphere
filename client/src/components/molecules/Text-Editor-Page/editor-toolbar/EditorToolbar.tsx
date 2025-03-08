@@ -10,7 +10,7 @@ import HighlightColorPalette from "../../../atoms/Text-Editor-Page/color-palette
 
 export default function EditorToolbar(){
 
-    const { editorState, setEditorState } = useContext(EditorContext);
+    const { editorState, setEditorState, handleEditorChange } = useContext(EditorContext);
     const dispatch = useDispatch<AppDispatch>();
     const colorPaletteRef  = useRef<HTMLDivElement>(null);
     const highlightColorPaletteRef  = useRef<HTMLDivElement>(null);
@@ -21,6 +21,9 @@ export default function EditorToolbar(){
 
         const newEditorState = RichUtils.toggleInlineStyle( editorState , command);
         setEditorState( newEditorState);
+
+        //styles realtime and database update
+        handleEditorChange(newEditorState);
     }
 
 
@@ -46,6 +49,9 @@ export default function EditorToolbar(){
         
         setEditorState( EditorState.push( editorState, contentState, "change-inline-style"));
 
+        //styles realtime and database update
+        handleEditorChange( EditorState.push( editorState, contentState, "change-inline-style"));
+
     }
 
     //clear highlight color and color formatting
@@ -60,6 +66,10 @@ export default function EditorToolbar(){
         
         setEditorState( EditorState.push( editorState, contentState, "change-inline-style"));
         
+        //styles realtime and database update
+        handleEditorChange( EditorState.push( editorState, contentState, "change-inline-style"));
+
+
     }
 
     
@@ -67,11 +77,18 @@ export default function EditorToolbar(){
     const undoHandler = ()=>{
         setEditorState( EditorState.undo( editorState));
 
+        //styles realtime and database update
+        handleEditorChange( EditorState.undo( editorState));
+
+
     }
 
     //redo
     const redoHandler = ()=>{
         setEditorState( EditorState.redo( editorState));
+
+        //styles realtime and database update
+        handleEditorChange( EditorState.redo( editorState));
     }
 
 

@@ -14,7 +14,7 @@ export default function DocumentsList({ title, documents, setDocuments}:Document
         <div className="px-5 py-4">
             <div>
                 <h1 className=" pb-3 font-semibold text-gray-700">{title}</h1>
-                <div className="w-full flex ">
+                <div className=" w-full flex overflow-x-scroll pb-8">
                     {
                         documents?.map((document,i)=>{
                             return (<DocumentCard key={i} document={document && document} setDocuments={setDocuments} />)

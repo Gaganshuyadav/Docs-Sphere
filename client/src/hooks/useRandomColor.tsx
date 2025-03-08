@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useRandomColor = ():[ string | undefined, Array<string>] =>{
+const useRandomColor = ( ):[ string | undefined, Array<string>] =>{
 
     const colors = [ 
         "bg-[rgb(34,12,56)]", "bg-[rgb(123,45,67)]", "bg-[rgb(200,100,50)]", "bg-[rgb(12,34,56)]",

@@ -1,4 +1,4 @@
-import { convertToRaw, Editor, EditorState} from "draft-js";
+import { ContentBlock, ContentState, convertFromRaw,  convertToRaw, Editor, EditorState, RawDraftContentState} from "draft-js";
 import { useContext, useEffect, useRef } from "react";
 import { EditorContext } from "../../../context/editor-context";
 import "draft-js/dist/Draft.css";
@@ -43,16 +43,25 @@ const DocumentEditor = () =>{
         }
 
     },[]);
-   
-    
-   
+
+
         
      
-    //-----------------------------------------------------
+    //--------------load text at start, and also when text chnaged with sockets---------------------------------------
+
+    useEffect(()=>{
+
+        if(document?.content){
+            const newEditorState = EditorState.createWithContent( convertFromRaw(document?.content as RawDraftContentState) );
+            const moveCursorToEnd = EditorState.moveFocusToEnd(newEditorState);
+
+            setEditorState(moveCursorToEnd);
+        }
 
 
-    
+    },[document?.content]);
 
+console.log(document)
     return(
         <>
         <div className="border-2 w-full">
@@ -60,7 +69,7 @@ const DocumentEditor = () =>{
                
                 <Editor 
                     editorState={ editorState} 
-                    onChange={( editorState)=>{ setEditorState(editorState); handleEditorChange(editorState)}} 
+                    onChange={( editorState)=>{ setEditorState(editorState); handleEditorChange(editorState); }} 
                     ref={editorRef} 
                     placeholder="start writing... "
                     customStyleMap={ colorStyleMap}

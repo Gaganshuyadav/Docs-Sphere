@@ -26,6 +26,7 @@ import randomColor from "randomcolor";
 import { SocketContext } from "../../../../context/socket-context";
 import { SocketEvent } from "../../../../types/enums/SocketEvents";
 import { Menu} from "@mui/icons-material";
+import { useRandomColor } from "../../../../hooks/useRandomColor";
 
 export default function DocumentMenuBar(){
 
@@ -236,8 +237,7 @@ const CurrentUsers = memo(() => {
 
     const { currentUsers} = useSelector((state:{ document: DocumentStateType})=>state.document );
     const { user} = useSelector((state:{ user: UserStateType})=>state.user );
-    const rColor = randomColor();
-    
+    const [ rangomColor, colors] = useRandomColor();
 
     return(
         <div className="max-w-80 h-15 hover:overflow-scroll overflow-y-hidden block md:block">
@@ -248,7 +248,7 @@ const CurrentUsers = memo(() => {
                         return(
                             <>
 
-                            { user?.email!==cUser && (<div key={i} style={{backgroundColor: rColor}} className={`h-8 h-8 md:w-10 md:h-10 rounded-full ${randomColor} relative m-1`}>
+                            { user?.email!==cUser && (<div key={i}  className={`h-8 h-8 md:w-10 md:h-10 ${colors[i]} rounded-full relative m-1`}>
                                 
                                 <h1 className="text-xl md:text-2xl text-center h-full text-white rounded-fill h-8 w-8 md:w-10 md:h-10">
                                     { cUser?.charAt(0).toUpperCase()}

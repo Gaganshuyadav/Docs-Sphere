@@ -9,7 +9,7 @@ import { ComponentStateType, setHighlightColorPaletteCurrentColor, setIsHighligh
 
 const HighlightColorPalette = () => {
 
-    const { editorState, setEditorState} = useContext(EditorContext);
+    const { editorState, setEditorState, handleEditorChange} = useContext(EditorContext);
     const { colorPaletteCurrentColor, highlightColorPaletteCurrentColor} = useSelector( (state:{ component:ComponentStateType})=>state.component );
     const dispatch = useDispatch();
 
@@ -73,6 +73,8 @@ const handleHighlightChangeTextColor = ( selectedColor:string)=>{
     const newState = RichUtils.toggleInlineStyle( editorState, selectedColor);
     setEditorState(newState);
 
+    //styles realtime and database update
+    handleEditorChange( newState);
 };
 
 
