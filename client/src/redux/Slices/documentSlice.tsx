@@ -23,10 +23,6 @@ const documentSlice = createSlice({
             state.currentUsers = action.payload;
         }
     }
-    ,
-    extraReducers: ( builder)=>{
-
-    }
 })
 
 export const { savingDocument, setDocument, setCurrentUsers} = documentSlice.actions;

@@ -21,7 +21,7 @@ export default memo(function DocumentCard( { document, setDocuments}:DocumentCar
     const Skeleton = (
         <div className="ml-1">
             {
-                Array.from({ length:16}, ( x,y)=>{
+                Array.from({ length:16}, ( x , y)=>{
 
                     return(
                         <div key={y} className="m-2">

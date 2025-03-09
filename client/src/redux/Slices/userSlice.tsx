@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import userThunks from "../thunks/user.tsx";
 import { jwtDecode} from "jwt-decode";
 import { UserStateType } from "../../vite-env";
@@ -53,13 +53,13 @@ const userSlice = createSlice({
 
 
         //get user information
-        builder.addCase( userThunks.getUserInformation.pending, ( state, action)=>{
+        builder.addCase( userThunks.getUserInformation.pending, ( state)=>{
             state.isUserLoading = true;
         }),
-        builder.addCase( userThunks.getUserInformation.fulfilled, ( state, action)=>{
+        builder.addCase( userThunks.getUserInformation.fulfilled, ( state)=>{
             state.isUserLoading = false;
         }),
-        builder.addCase( userThunks.getUserInformation.rejected, ( state, action)=>{
+        builder.addCase( userThunks.getUserInformation.rejected, ( state)=>{
             state.isUserLoading = false;
         })
 

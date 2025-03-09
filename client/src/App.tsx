@@ -1,7 +1,6 @@
 import './App.css';
 import { Navigate, Route, Routes} from "react-router-dom";
 import Login from './pages/login/Login.tsx';
-import Home from "./pages/home/Home.tsx";
 import Register from './pages/Register/Register.tsx';
 import VerifyEmail from './pages/user/verify-email.tsx';
 import CreateAndLoadDocuments from './pages/document/CreateAndLoadDocuments.tsx';
@@ -9,12 +8,8 @@ import { Auth} from './utils/auth-refresh-route/Auth.tsx';
 import TextEditorPage from './pages/document/TextEditorPage.tsx';
 import EnterEmail from './pages/Reset-Password/EnterEmail.tsx';
 import ResetPassword from './pages/Reset-Password/ResetPassword.tsx';
-import { useSelector } from 'react-redux';
-import { UserStateType } from './vite-env';
 
 function App() {
-
-  const { isAuthenticated} = useSelector((state:{ user:UserStateType})=>(state.user));
 
   return (
     <>

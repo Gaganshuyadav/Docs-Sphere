@@ -1,9 +1,9 @@
-import React, {  useContext, useEffect, useRef } from 'react';
+import {  useContext } from 'react';
 import { Done} from "@mui/icons-material";
 import { RichUtils } from 'draft-js';
 import { EditorContext } from '../../../../context/editor-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { ComponentStateType, setColorPaletteCurrentColor, setIsColorPaletteOpen } from '../../../../redux/Slices/componentSlice';
+import { ComponentStateType, setColorPaletteCurrentColor } from '../../../../redux/Slices/componentSlice';
 
 
 

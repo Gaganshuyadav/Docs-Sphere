@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export default function CreateDocumentButton(){
 
-    const [ accessToken, setToken] = useLocalStorage("docs-sphere-refresh-token", "");
+    const [ accessToken] = useLocalStorage("docs-sphere-refresh-token", "");
     const [ loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
