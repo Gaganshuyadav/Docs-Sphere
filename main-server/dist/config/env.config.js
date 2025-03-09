@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === undefined ||
     process.env.VITE_SERVER === undefined ||
     process.env.FROM_EMAIL === undefined ||
     process.env.PASSWORD_EMAIL === undefined) {
-    throw new Error("Environment variables missing.");
+    throw new Error("Environment variables missing."); //do it
 }
 const env = {
     NODE_ENV: process.env.NODE_ENV,

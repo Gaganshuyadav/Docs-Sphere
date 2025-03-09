@@ -4,6 +4,7 @@ dotenv.config({ path: '.env.development' });
 import express from "express";
 import router from "./routes/index.js";
 const app = express();
+// npm install pg pg-hstore && npm run build
 app.use(cors());
 //res.json conversion
 app.use(express.json());
