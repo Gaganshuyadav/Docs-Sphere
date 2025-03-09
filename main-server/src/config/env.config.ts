@@ -18,7 +18,7 @@ if(
     process.env.PASSWORD_EMAIL === undefined
 ){
     
-    throw new Error("Environment variables missing.");
+    throw new Error("Environment variables missing.");//do it
 }
 
 const env = {
