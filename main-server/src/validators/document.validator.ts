@@ -9,7 +9,7 @@ class DocumentValidator{
             .withMessage("Title must be between 0 to 25 characters."),
         body("content")
             .optional()
-            .custom(( value)=>{
+            .custom(( value:string|object)=>{
 
                 try{
                     const strf = JSON.stringify(value); //app.use(express.json()) by default parse the data without parse , if sender send JSON.stringify 
