@@ -14,7 +14,10 @@ const sequelize = ( env.NODE_ENV==="test" || env.NODE_ENV==="development") ? ( n
     )
     :
     (
-    new Sequelize( env.DATABASE_URL, env.USER, env.PASSWORD, {
+    new Sequelize( env.DATABASE_URL, {
+        database: env.DATABASE,
+        username: env.USER,
+        password: env.PASSWORD,
         dialect: "postgres",
         define:{
             freezeTableName: true
@@ -22,7 +25,7 @@ const sequelize = ( env.NODE_ENV==="test" || env.NODE_ENV==="development") ? ( n
         dialectOptions: {
             ssl:{
                 require: true,
-                rejectUnauthorized: false,
+                rejectUnauthorized: false
             }
         },
         logging: false,

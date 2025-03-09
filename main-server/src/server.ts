@@ -35,6 +35,7 @@ db.sequelize.authenticate()
     console.log("database is connected");
 })
 .catch((err)=>{
+    console.log(err);
     console.log("error in database connection");
 })
 
