@@ -12,9 +12,9 @@ class ShareValidator{
             .withMessage("Must provide a valid email to share this document with."),
             
         body("permission")
-            .custom( ( value)=>{
+            .custom( ( value:PermissionEnum)=>{
 
-                if(!Object.values(PermissionEnum).includes(value) ){
+                if(!Object.values(PermissionEnum).includes(value ) ){
 
                     throw new Error("Must provide a valid document permission.");
                 }

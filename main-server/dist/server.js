@@ -33,4 +33,4 @@ app.get("/", (req, res) => {
     });
 });
 app.use(router);
-export default app;
+export { app };

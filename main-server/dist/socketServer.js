@@ -1,4 +1,4 @@
-import app from "./server.js";
+import { app } from "./server.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { SocketEvent } from "./utils/SocketEvents.js";

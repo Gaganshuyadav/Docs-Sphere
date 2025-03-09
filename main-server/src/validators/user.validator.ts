@@ -1,6 +1,7 @@
 import { body} from "express-validator";
 import { userService} from "../services/user.service.js";
 import { User } from "../models/user.model.js";
+import { Request} from "express";
 
 class UserValidator{
     public register = [

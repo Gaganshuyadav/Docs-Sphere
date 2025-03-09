@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import catchAsyncErrors from "../middleware/catch-async.js";
 import { documentService } from "../services/document.service.js";
-import { validationResult } from "express-validator";
+import { validationResult} from "express-validator";
 import { Document } from "../models/document.model.js";
 import { Server} from "socket.io";
 import { SocketEvent } from "../utils/SocketEvents.js";
