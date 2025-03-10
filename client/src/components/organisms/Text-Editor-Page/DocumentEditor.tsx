@@ -61,7 +61,7 @@ const DocumentEditor = () =>{
 
     },[document?.content]);
 
-console.log(document)
+
     return(
         <>
         <div className="border-2 w-full">

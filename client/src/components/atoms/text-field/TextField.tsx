@@ -1,7 +1,6 @@
 import { Visibility, VisibilityOff, ErrorOutline} from "@mui/icons-material";
 import InputProps from "../../../types/interfaces/InputProps";
 import { ChangeEvent, useEffect, useRef, useState} from "react";
-import InputMask from "inputmask";
 import Errors from "../errors/Errors.tsx";
 
 interface TextFieldProps extends InputProps{

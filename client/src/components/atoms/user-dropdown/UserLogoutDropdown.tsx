@@ -11,13 +11,12 @@ import { server } from "../../../utils/config";
 import axios from "axios";
 import { ToastContext } from "../../../context/toast-context";
 import { useNavigate } from "react-router";
-import randomColor from "randomcolor";
 
 
 const UserDropdown = ()=>{
 
     const dispatch = useDispatch();
-    const color = randomColor();
+    const [ randomColor, colors] = useRandomColor();
     const navigate = useNavigate();
     const [ value, setValue] = useLocalStorage( "docs-sphere-refresh-token", "");
     const { success, error} = useContext( ToastContext);
@@ -73,7 +72,7 @@ const UserDropdown = ()=>{
     
     return(
         <div ref={dropDownContentRef} className="mr-2 md:mr-4 mt-1 rounded-full relative cursor-pointer">
-            <div style={{backgroundColor:color}} className={`w-10 h-10 md:w-12 md:h-12 rounded-full relative mx-0 md:mx-auto ml-2 mr-0 `}
+            <div className={`bg-black w-10 h-10 md:w-12 md:h-12 rounded-full relative mx-0 md:mx-auto ml-2 mr-0 `}
             >
                 <h1 className=" text-2xl md:text-3xl text-center h-full text-white mt-[2px] pt-1 rounded-fill ">
                     { user?.email.charAt(0).toUpperCase()}

@@ -22,7 +22,6 @@ import { Help } from "../../../atoms/Text-Editor-Page/menu-specific-editor-opera
 import { ComponentStateType, setActiveDialogForMenuUseBoolean, setActiveDialogForMenuUseIdx } from "../../../../redux/Slices/componentSlice";
 import { EditorContext } from "../../../../context/editor-context";
 import { EditorState, SelectionState } from "draft-js";
-import randomColor from "randomcolor";
 import { SocketContext } from "../../../../context/socket-context";
 import { SocketEvent } from "../../../../types/enums/SocketEvents";
 import { Menu} from "@mui/icons-material";

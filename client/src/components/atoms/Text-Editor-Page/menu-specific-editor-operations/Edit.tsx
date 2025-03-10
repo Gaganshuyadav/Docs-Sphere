@@ -5,7 +5,6 @@ import { MenuItemsButton } from "./ButtonForAll/MenuItemButtons";
 import { useContext } from "react";
 import { EditorContext } from "../../../../context/editor-context";
 import { ContentState, convertToRaw, EditorState, Modifier, SelectionState } from "draft-js";
-import { blob } from "stream/consumers";
 
 const Edit = ( { idx}:{idx:number}) =>{
 
@@ -80,7 +79,7 @@ const Edit = ( { idx}:{idx:number}) =>{
       try{
 
         // clipboard writeText is allowed in laptop but some android phones not allow it and state is denied,  for that we need to make create element and then copy it
-        navigator.permissions.query( { name: "clipboard-write"})
+        navigator.permissions.query( { name: "clipboard-write" as PermissionName})
         .then(async ( permission)=>{
 
             if( permission.state==="denied"){
@@ -160,7 +159,7 @@ const Edit = ( { idx}:{idx:number}) =>{
       try{
 
         // clipboard writeText is allowed in laptop but some android phones not allow it and state is denied,  for that we need to make create element and then copy it
-        navigator.permissions.query( { name: "clipboard-write"})
+        navigator.permissions.query( { name: "clipboard-write" as PermissionName})
         .then(async ( permission)=>{
 
             if( permission.state==="denied"){

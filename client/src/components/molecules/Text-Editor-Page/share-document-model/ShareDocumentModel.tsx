@@ -44,7 +44,7 @@ const ShareDocumentModel = () =>{
       try{
 
           // clipboard writeText is allowed in laptop but some android phones not allow it and state is denied,  for that we need to make create element and then copy it
-          navigator.permissions.query( { name: "clipboard-write"})
+          navigator.permissions.query( { name: "clipboard-write" as PermissionName})
           .then(( permission)=>{
 
               if( permission.state==="denied"){
@@ -145,8 +145,9 @@ const ShareDocumentModel = () =>{
       setIsLoading(true);
       try{
          const { data} = await axios.post<{documentUser:DocumentUser, user:{email:string}}>(`${server}/document/${document?.id}/share`, { email: shareEmail, permission: PermissionEnum.EDIT }, { headers:{ "Content-Type":"application/json", "Authorization":`Bearer ${accessToken}` } });
-         dispatch( setDocument({ ...document, sharedDocuments: [ ...document?.sharedDocuments,  { ... data?.documentUser, User:{ email: data.user.email} } ] }));
+         dispatch( setDocument({ ...document, sharedDocuments: [ ...(document ? document?.sharedDocuments : []),  { ... data?.documentUser, User:{ email: data.user.email} } ]  } ));
          success(`Document is Shared with ${data.user.email}, Successfully !!`)
+  
       }
       catch(err:any){
           if(err.status===409){
