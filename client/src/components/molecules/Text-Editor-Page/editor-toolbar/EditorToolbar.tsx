@@ -129,6 +129,7 @@ export default function EditorToolbar(){
     
     },[]);
 
+
     return( 
         <div className="flex bg-blue-50 rounded-full">
           <div className=" w-28 flex">

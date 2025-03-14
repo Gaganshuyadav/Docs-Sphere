@@ -29,10 +29,10 @@ export default function Format({ idx }: { idx: number }) {
                         <MenuItemsButton item={"Italic"} onClickHandler={()=>{ handleTextFormating("ITALIC")}} />
                         <MenuItemsButton item={"Line Height"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
                         <MenuItemsButton item={"Underline"} onClickHandler={()=>{ handleTextFormating("UNDERLINE")} } />
-                        <MenuItemsButton item={"H1"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
+                        {/* <MenuItemsButton item={"H1"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
                         <MenuItemsButton item={"H2"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
                         <MenuItemsButton item={"Bullet List"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-                        <MenuItemsButton item={"Numbered List"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
+                        <MenuItemsButton item={"Numbered List"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} /> */}
                     </div>
                 )}
             />

@@ -15,10 +15,10 @@ const Tools = ( { idx}:{idx:number}) =>{
           idx={idx} 
           component={(
             <div className="relative bg-white text-gray-500 font-semibold tracking-wide text-sm whitespace-nowrap">
-              <MenuItemsButton item={"Spell Check"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
+              {/* <MenuItemsButton item={"Spell Check"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
               <MenuItemsButton item={"Grammer Check"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
               <MenuItemsButton item={"Word Count"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
-              <MenuItemsButton item={"Keyboard Shortcuts"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} />
+              <MenuItemsButton item={"Keyboard Shortcuts"} onClickHandler={() => { dispatch(setActiveDialogForMenuUseBoolean(false)) }} /> */}
             </div>
           )}
         />

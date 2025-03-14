@@ -7,6 +7,7 @@ export type ComponentStateType = {
     colorPaletteCurrentColor: string,
     isHighlightColorPaletteOpen: boolean,
     highlightColorPaletteCurrentColor: string,
+    imageUplaodInEditorLoading: boolean,
 }
 
 const initialState:ComponentStateType = {
@@ -16,6 +17,7 @@ const initialState:ComponentStateType = {
     colorPaletteCurrentColor: "black",
     isHighlightColorPaletteOpen: false,
     highlightColorPaletteCurrentColor: "white",
+    imageUplaodInEditorLoading: false,
 
 }
 
@@ -41,7 +43,11 @@ const documentSlice = createSlice({
         },
         setHighlightColorPaletteCurrentColor: ( state, action)=>{
             state.highlightColorPaletteCurrentColor = action.payload
+        },
+        setImageUplaodInEditorLoading: ( state, action)=>{
+            state.imageUplaodInEditorLoading = action.payload;
         }
+        
     }
 })
 

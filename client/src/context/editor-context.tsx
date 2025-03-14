@@ -82,7 +82,7 @@ export const EditorProvider = ({ children}:{ children: JSX.Element})=>{
                      //when document content change editor state is automatically changed
                 }
                 catch(err:any ){
-                    error("error in saving the document, Please try again.");
+                    // error("error in saving the document, Please try again.");
                 }
                 finally{
                     dispatch(savingDocument(false));

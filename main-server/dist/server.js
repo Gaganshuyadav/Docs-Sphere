@@ -10,10 +10,8 @@ app.use(cors());
 app.use(express.json());
 //db connection--------------------------------------------
 import db from "./models/index.js";
-import { env } from "./config/env.config.js";
 db.sequelize.sync({ alter: true })
     .then((data) => {
-    console.log("env ", env.PORT);
     console.log("All Tables are created successfully");
 })
     .catch((err) => {
