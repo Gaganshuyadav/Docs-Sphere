@@ -64,21 +64,21 @@ To get started with Docs-Sphere, follow these steps:
 
   - For the backend
   
-  cd main-server
-
-  npm install
+      cd main-server
+    
+      npm install
 
   - For Client
 
-  cd client
-
-  npm install
+      cd client
+    
+      npm install
 
 3. **Set Up Environment Variables**: 
 
- To run the application, you need to set up environment variables for both the server and client. 
+    To run the application, you need to set up environment variables for both the server and client. 
  
- Create a `.env` file in the `server` directory and add the following variables:
+### Create a `.env` file in the `server` directory and add the following variables:
 
   ### Server Environment Variables
 
