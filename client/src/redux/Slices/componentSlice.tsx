@@ -2,6 +2,7 @@ import { createSlice} from "@reduxjs/toolkit";
 
 export type ComponentStateType = {
     activeDialogForMenuUseIdx: number | null,
+    isContentDialogOpen: boolean,
     activeDialogForMenuUseBoolean: boolean,
     isColorPaletteOpen: boolean,
     colorPaletteCurrentColor: string,
@@ -12,6 +13,7 @@ export type ComponentStateType = {
 
 const initialState:ComponentStateType = {
     activeDialogForMenuUseIdx: null,
+    isContentDialogOpen : false,
     activeDialogForMenuUseBoolean: false,
     isColorPaletteOpen: false,
     colorPaletteCurrentColor: "black",
@@ -28,6 +30,9 @@ const documentSlice = createSlice({
 
         setActiveDialogForMenuUseIdx: ( state, action)=>{
             state.activeDialogForMenuUseIdx = action.payload;
+        },
+        setTsContentDialogOpen: ( state, action)=>{
+            state.isContentDialogOpen = action.payload;
         },
         setActiveDialogForMenuUseBoolean: ( state, action)=>{
             state.activeDialogForMenuUseBoolean = action.payload;
@@ -51,7 +56,7 @@ const documentSlice = createSlice({
     }
 })
 
-export const { setActiveDialogForMenuUseIdx, setActiveDialogForMenuUseBoolean, setIsColorPaletteOpen, setColorPaletteCurrentColor, setIsHighlightColorPaletteOpen, setHighlightColorPaletteCurrentColor } = documentSlice.actions;
+export const { setActiveDialogForMenuUseIdx, setTsContentDialogOpen, setActiveDialogForMenuUseBoolean, setIsColorPaletteOpen, setColorPaletteCurrentColor, setIsHighlightColorPaletteOpen, setHighlightColorPaletteCurrentColor } = documentSlice.actions;
 
 export default documentSlice.reducer;
 
