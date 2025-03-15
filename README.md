@@ -82,36 +82,24 @@ To get started with Docs-Sphere, follow these steps:
 
   ### Server Environment Variables
 
-   NODE_ENV=development
-
-   HOST=localhost
-
-   PORT=3000
-
-   DATABASE_URL=your_database_url
-
-   USER=your_database_user
-
-   DATABASE=your_database_name
-
-   PASSWORD=your_database_password
-
-   DB_HOST=your_database_host
-
-   DB_PORT=your_database_port
-
-   JWT_SECRET=your_jwt_secret
-
-   VITE_SERVER=http://localhost:5173
-
-   FROM_EMAIL=your_email@example.com
-
-   PASSWORD_EMAIL=your_email_password
+   - NODE_ENV=development
+   - HOST=localhost
+   - PORT=3000
+   - DATABASE_URL=your_database_url
+   - USER=your_database_user
+   - DATABASE=your_database_name
+   - PASSWORD=your_database_password
+   - DB_HOST=your_database_host
+   - DB_PORT=your_database_port
+   - JWT_SECRET=your_jwt_secret
+   - VITE_SERVER=http://localhost:5173
+   - FROM_EMAIL=your_email@example.com
+   - PASSWORD_EMAIL=your_email_password
 
 
   ### Client Environment Variables
 
-   VITE_SERVER = http://localhost:3000
+   - VITE_SERVER = http://localhost:3000
    
 
 ## Acknowledgments
