@@ -1,4 +1,10 @@
-const  colorStyleMap = {
+const  customStyleMap = {
+    //line-height
+    "line-height-1":{ lineHeight: "1"},
+    "line-height-2":{ lineHeight: "2"},
+    "line-height-3":{ lineHeight: "3"},
+    "line-height-4":{ lineHeight: "4"},
+    "line-height-5":{ lineHeight: "5"},
     // for text  backgroundColor
     red: { color: 'rgba(255, 0, 0, 1.0)' },
     orange: { color: 'rgba(255, 127, 0, 1.0)' },
@@ -50,6 +56,7 @@ const  colorStyleMap = {
     turquoise: { color: 'rgba(64, 224, 208, 1.0)' },
     fuchsia: { color: 'rgba(255, 0, 255, 1.0)' },
     chartreuse: { color: 'rgba(127, 255, 0, 1.0)'},
+
     //for highlight text
     highlightRed: {  backgroundColor: 'rgba(255, 0, 0, 1.0)' },
     highlightOrange: {  backgroundColor: 'rgba(255, 127, 0, 1.0)' },
@@ -103,4 +110,4 @@ const  colorStyleMap = {
     highlightChartreuse: {  backgroundColor: 'rgba(127, 255, 0, 1.0)'},
 };
 
-export default  colorStyleMap;
+export default  customStyleMap;
