@@ -25,6 +25,7 @@ export default function Format({ idx }: { idx: number }) {
 
         const newState = RichUtils.toggleInlineStyle(editorState, lh);
         setEditorState(newState);
+        
         //styles realtime and database update
         handleEditorChange(newState);
     }

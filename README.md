@@ -45,6 +45,15 @@ Welcome to **Docs-Sphere**, a collaborative document editing platform that empow
 - **react-transition-group**: smooth transition and animations
 
 
+## Screen View
+
+# ScreenShot 1
+![Docs Editor 1](./client/public/screenshots/screenshot-docs-sphere-1.png)
+
+# ScreenShot 2
+![Docs Editor 2](./client/public/screenshots/screenshot-docs-sphere-2.png)
+
+
 ## Getting Started
 
 To get started with Docs-Sphere, follow these steps:
