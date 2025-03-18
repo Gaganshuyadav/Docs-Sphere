@@ -41,7 +41,7 @@ export default function Format({ idx }: { idx: number }) {
                         <div className="relative">
                             <div
                                 className="px-4 py-1 hover:bg-gray-200 cursor-pointer relative"
-                                onClick={() => {setIsLineHeightDialogOpen(!isLineHeightDialogOpen) }}
+                                onClick={() => { setIsLineHeightDialogOpen(!isLineHeightDialogOpen) }}
                             >
                                 Line Height
                             </div>
@@ -55,7 +55,7 @@ export default function Format({ idx }: { idx: number }) {
                                                     return (
                                                         <div
                                                             className="px-8 py-1 hover:bg-gray-200 cursor-pointer"
-                                                            onClick={()=>{ handleSetLineHeight(`line-height-${height}`); setActiveDialogForMenuUseBoolean(false)}}
+                                                            onClick={()=>{ handleSetLineHeight(`line-height-${height}`) }}
                                                         >
                                                             {height}
                                                         </div>
@@ -69,10 +69,7 @@ export default function Format({ idx }: { idx: number }) {
                         </div>
 
                         <MenuItemsButton item={"Underline"} onClickHandler={() => { handleTextFormating("UNDERLINE") }} />
-                        {/* <MenuItemsButton item={"H1"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-                        <MenuItemsButton item={"H2"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-                        <MenuItemsButton item={"Bullet List"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} />
-                        <MenuItemsButton item={"Numbered List"} onClickHandler={()=>{ dispatch( setActiveDialogForMenuUseBoolean(false))}} /> */}
+                       
                     </div>
                 )}
             />

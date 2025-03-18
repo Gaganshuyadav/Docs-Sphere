@@ -11,3 +11,32 @@
     font-family: Arial, sans-serif;
     font-size: 16px;
 }
+
+.zoom-p-100{
+    transform: scale(1);
+}
+
+.zoom-p-120{
+    transform: scale(1.2);
+    z-index: -3;
+    margin-top: 100px;
+}
+.zoom-p-140{
+    transform: scale(1.4);
+    z-index: -3;
+    margin-top: 170px;
+}
+.zoom-p-160{
+    transform: scale(1.6);
+    z-index: -3;
+    margin-top: 250px;
+}
+.zoom-p-180{
+    transform: scale(1.8);
+    z-index: -3;
+    margin-top: 300px;
+}
+.zoom-p-200{
+    transform: scale(2);
+    margin-top: 380px;
+}

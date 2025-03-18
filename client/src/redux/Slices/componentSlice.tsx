@@ -9,6 +9,7 @@ export type ComponentStateType = {
     isHighlightColorPaletteOpen: boolean,
     highlightColorPaletteCurrentColor: string,
     imageUplaodInEditorLoading: boolean,
+    currentZoomNumber: number,
 }
 
 const initialState:ComponentStateType = {
@@ -20,6 +21,7 @@ const initialState:ComponentStateType = {
     isHighlightColorPaletteOpen: false,
     highlightColorPaletteCurrentColor: "white",
     imageUplaodInEditorLoading: false,
+    currentZoomNumber: 100,
 
 }
 
@@ -49,14 +51,18 @@ const documentSlice = createSlice({
         setHighlightColorPaletteCurrentColor: ( state, action)=>{
             state.highlightColorPaletteCurrentColor = action.payload
         },
+        //currently not used 
         setImageUplaodInEditorLoading: ( state, action)=>{
             state.imageUplaodInEditorLoading = action.payload;
+        },
+        setCurrentZoomNumber: ( state, action)=>{
+            state.currentZoomNumber = action.payload;
         }
         
     }
 })
 
-export const { setActiveDialogForMenuUseIdx, setTsContentDialogOpen, setActiveDialogForMenuUseBoolean, setIsColorPaletteOpen, setColorPaletteCurrentColor, setIsHighlightColorPaletteOpen, setHighlightColorPaletteCurrentColor } = documentSlice.actions;
+export const { setActiveDialogForMenuUseIdx, setTsContentDialogOpen, setActiveDialogForMenuUseBoolean, setIsColorPaletteOpen, setColorPaletteCurrentColor, setIsHighlightColorPaletteOpen, setHighlightColorPaletteCurrentColor, setCurrentZoomNumber } = documentSlice.actions;
 
 export default documentSlice.reducer;
 

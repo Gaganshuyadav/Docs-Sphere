@@ -129,7 +129,7 @@ export default function DocumentMenuBar(){
 
 
     return (
-    <div className=" flex flex-row justify-between items-center h-24 ">
+    <div className=" flex flex-row justify-between items-center h-24 bg-white z-30">
 
         <div className="flex">
             <div className="ml-4 flex items-center justify-center">

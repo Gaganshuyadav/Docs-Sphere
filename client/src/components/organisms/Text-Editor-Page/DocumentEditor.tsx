@@ -10,13 +10,15 @@ import { DocumentStateType, UserStateType } from "../../../vite-env";
 import { useParams } from "react-router";
 import customStyleMap from "../../values/customStyleMap";
 import "../../values/blockStyleFnClasses.css";
+import { ComponentStateType } from "../../../redux/Slices/componentSlice";
 
 const DocumentEditor = () =>{
 
-    const { editorState, setEditorState, editorRef, handleEditorChange} = useContext(EditorContext);
+    const { editorState, setEditorState, editorRef, handleEditorChange, editorParentRef} = useContext(EditorContext);
     //current users existance in the socket-----------------
     const  { user} = useSelector(( state:{ user:UserStateType})=>state.user);
-    const { document} = useSelector(( state:{ document:DocumentStateType})=>state.document)
+    const { document} = useSelector(( state:{ document:DocumentStateType})=>state.document);
+    const { currentZoomNumber} = useSelector((state:{ component:ComponentStateType})=>state.component);
     const params = useParams();
     const socket = useContext( SocketContext).socket;
     
@@ -92,16 +94,14 @@ const DocumentEditor = () =>{
             setEditorState(moveCursorToEnd);
         }
         
-        
 
-
-    },[document?.content]);
+    },[document?.content, ]);
 
 
     return(
         <>
-        <div className="border-2 w-full">
-            <div className="mt-6 sm:w-[90%] md:w-[700px] mx-auto shadow-xl shadow-blue-200">
+        <div className=" w-full overflow-scroll ">
+            <div ref={ editorParentRef} className={`zoom-p-${currentZoomNumber} mt-6 sm:w-[90%] md:w-[700px] mx-auto shadow-xl shadow-blue-200 mb-4 z-[-3]`} >
                
                 <Editor 
                     editorState={ editorState} 
@@ -109,7 +109,7 @@ const DocumentEditor = () =>{
                     ref={editorRef} 
                     placeholder="start writing... "
                     customStyleMap={ customStyleMap} //set text color and highlight color
-                    // blockStyleFn={}          //set( if we want custom styling classes)
+                    // blockStyleFn={ }          //set( if we want custom styling classes)
                     blockRendererFn={ mediaBlockRenderer}   //set image
                 />
             </div>

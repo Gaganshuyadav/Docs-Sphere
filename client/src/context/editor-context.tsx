@@ -16,6 +16,7 @@ interface EditorContextInterface{
     editorState: EditorState,
     setEditorState: Dispatch<SetStateAction<EditorState>>,
     editorRef: null | MutableRefObject<null | Editor>
+    editorParentRef: null | MutableRefObject<null | HTMLDivElement>
     handleEditorChange: ( editorState: EditorState)=>void
 }
 
@@ -23,6 +24,7 @@ const defaultValue:EditorContextInterface = {
     editorState: EditorState.createEmpty(),
     setEditorState: ()=>{},
     editorRef: null,
+    editorParentRef: null,
     handleEditorChange: ()=>{}
 }
 
@@ -35,6 +37,7 @@ export const EditorProvider = ({ children}:{ children: JSX.Element})=>{
     //editor state
     const [ editorState, setEditorState] = useState(defaultValue.editorState);
     const editorRef = useRef<Editor|null>(null);
+    const editorParentRef = useRef<HTMLDivElement|null>(null);
 
     //document from redux
     const { document} = useSelector((state:{ document: DocumentStateType})=>state.document);
@@ -150,7 +153,7 @@ export const EditorProvider = ({ children}:{ children: JSX.Element})=>{
 
 
     return (
-    <EditorContext.Provider value={{ editorState, setEditorState, editorRef, handleEditorChange }}>
+    <EditorContext.Provider value={{ editorState, setEditorState, editorRef, editorParentRef, handleEditorChange }}>
         {children}
     </EditorContext.Provider>)
 
