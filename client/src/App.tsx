@@ -8,6 +8,8 @@ import { Auth} from './utils/auth-refresh-route/Auth.tsx';
 import TextEditorPage from './pages/document/TextEditorPage.tsx';
 import EnterEmail from './pages/Reset-Password/EnterEmail.tsx';
 import ResetPassword from './pages/Reset-Password/ResetPassword.tsx';
+import Terms from "./pages/terms/Terms.jsx";
+import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy.jsx";
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
       <Route path="/" element={<Auth><Navigate to="/document/all/create/" /></Auth>}/>
       <Route path="/login" element={<Login/>} />  
       <Route path="/register" element={<Register/>}/>
+      <Route path="/terms" element={<Terms/>} />
+      <Route path="/pp" element={<PrivacyPolicy/>} />
       <Route path='/user/email' element={<EnterEmail/>} />
       <Route path='/user/refresh-token/:resetPasswordToken?' element={<ResetPassword/>}/>  
       <Route path="/user/verify-email/:token?" element={<VerifyEmail/>} />  

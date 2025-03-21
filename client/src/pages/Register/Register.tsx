@@ -206,12 +206,17 @@ export default function Register(){
             </div>
 
             <div className="space-x-4 space-y-3">
-                <button className="font-semibold text-blue-400 hover:underline">
-                    Terms
-                </button>
-                <button className="font-semibold text-blue-400 hover:underline">
-                    Privacy Policy
-                </button>
+            <Link to={"/terms"}>
+                    <button className="font-semibold text-blue-400 hover:underline">
+                        Terms
+                    </button>
+                </Link>
+
+                <Link to={"/pp"}>
+                    <button className="font-semibold text-blue-400 hover:underline">
+                        Privacy Policy
+                    </button>
+                </Link>
             </div>
     
         </div>

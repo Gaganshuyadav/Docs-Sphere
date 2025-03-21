@@ -48,10 +48,10 @@ Welcome to **Docs-Sphere**, a collaborative document editing platform that empow
 ## Screen View
 
 # ScreenShot 1
-![Docs Editor 1](./client/public/screenshots/screenshot-docs-sphere-1.png)
+![Docs Editor 1](./client/public/screenshots/screenshot-docs-sphere-2.png)
 
 # ScreenShot 2
-![Docs Editor 2](./client/public/screenshots/screenshot-docs-sphere-2.png)
+![Docs Editor 2](./client/public/screenshots/screenshot-docs-sphere-3.png)
 
 
 ## Getting Started
@@ -108,8 +108,7 @@ To get started with Docs-Sphere, follow these steps:
 
   ### Client Environment Variables
 
-   - VITE_SERVER = http://localhost:3000
-   
+   - VITE_SERVER = http://localhost:5173 
 
 ## Acknowledgments
 

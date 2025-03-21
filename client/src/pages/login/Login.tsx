@@ -211,13 +211,19 @@ export default function Login(){
                 </div>
             </div>
 
-            <div className="space-x-4 space-y-3">
-                <button className="font-semibold text-blue-400 hover:underline">
-                    Terms
-                </button>
-                <button className="font-semibold text-blue-400 hover:underline">
-                    Privacy Policy
-                </button>
+            <div className="space-x-4 space-y-3 mt-2">
+                <Link to={"/terms"}>
+                    <button className="font-semibold text-blue-400 hover:underline">
+                        Terms
+                    </button>
+                </Link>
+
+                <Link to={"/pp"}>
+                    <button className="font-semibold text-blue-400 hover:underline">
+                        Privacy Policy
+                    </button>
+                </Link>
+                
             </div>
     
         </div>
