@@ -8,8 +8,8 @@ import { Auth} from './utils/auth-refresh-route/Auth.tsx';
 import TextEditorPage from './pages/document/TextEditorPage.tsx';
 import EnterEmail from './pages/Reset-Password/EnterEmail.tsx';
 import ResetPassword from './pages/Reset-Password/ResetPassword.tsx';
-import Terms from "./pages/terms/Terms.jsx";
-import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy.jsx";
+import { Terms} from "./pages/terms/terms.tsx";
+import PrivacyPolicy from "./pages/privacy-policy/privacy-policy.tsx";
 
 function App() {
 

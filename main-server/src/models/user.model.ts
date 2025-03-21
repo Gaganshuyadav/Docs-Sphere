@@ -58,7 +58,6 @@ class User extends Model{
 
 
 
-
     @BelongsToMany(()=> Role, { 
         through:{
             model: ()=>UserRole
