@@ -53,6 +53,8 @@ Welcome to **Docs-Sphere**, a collaborative document editing platform that empow
 # ScreenShot 2
 ![Docs Editor 2](./client/public/screenshots/screenshot-docs-sphere-3.png)
 
+## Relationship Model
+![Docs Editor 2](./client/public/screenshots/screenshot-docs-sphere-4.png)
 
 ## Getting Started
 
