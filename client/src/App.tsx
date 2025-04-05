@@ -10,6 +10,7 @@ import EnterEmail from './pages/Reset-Password/EnterEmail.tsx';
 import ResetPassword from './pages/Reset-Password/ResetPassword.tsx';
 import { Terms} from "./pages/terms/terms.tsx";
 import PrivacyPolicy from "./pages/privacy-policy/privacy-policy.tsx";
+import NotFound from './pages/notfound/NotFound.tsx';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       <Route path="/user/verify-email/:token?" element={<VerifyEmail/>} />  
       <Route path="/document/all/create/" element={<Auth><CreateAndLoadDocuments/></Auth>} />
       <Route path="/document/:id?" element={<Auth><TextEditorPage/></Auth>} />
+      <Route path='/*' element={<NotFound/>} />
     </Routes>
     </>
   )

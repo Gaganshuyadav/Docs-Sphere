@@ -1,5 +1,10 @@
 import { Sequelize } from "sequelize-typescript";
 import { env} from "./env.config.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const sequelize = ( env.NODE_ENV==="test" || env.NODE_ENV==="development") ? ( new Sequelize( env.DATABASE, env.USER, env.PASSWORD,{
         host: env.DB_HOST,
@@ -24,14 +29,13 @@ const sequelize = ( env.NODE_ENV==="test" || env.NODE_ENV==="development") ? ( n
         },
         dialectOptions: {
             ssl:{
-                require: true,
-                rejectUnauthorized: false
+                require:true,
+                rejectUnauthorized: false,
             }
         },
         logging: false,
     })
     )
-
-
+    
 export default sequelize;
 

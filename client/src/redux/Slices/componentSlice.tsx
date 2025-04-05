@@ -25,7 +25,7 @@ const initialState:ComponentStateType = {
 
 }
 
-const documentSlice = createSlice({
+const componentSlice = createSlice({
     name:"component",
     initialState, 
     reducers:{
@@ -62,7 +62,7 @@ const documentSlice = createSlice({
     }
 })
 
-export const { setActiveDialogForMenuUseIdx, setTsContentDialogOpen, setActiveDialogForMenuUseBoolean, setIsColorPaletteOpen, setColorPaletteCurrentColor, setIsHighlightColorPaletteOpen, setHighlightColorPaletteCurrentColor, setCurrentZoomNumber } = documentSlice.actions;
+export const { setActiveDialogForMenuUseIdx, setTsContentDialogOpen, setActiveDialogForMenuUseBoolean, setIsColorPaletteOpen, setColorPaletteCurrentColor, setIsHighlightColorPaletteOpen, setHighlightColorPaletteCurrentColor, setCurrentZoomNumber } = componentSlice.actions;
 
-export default documentSlice.reducer;
+export default componentSlice.reducer;
 
